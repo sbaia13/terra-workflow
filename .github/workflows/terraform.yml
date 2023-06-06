@@ -14,7 +14,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
-    runs-on: windows-latest
+    runs-on: self-hosted
     environment: production
 # Use the Bash shell regardless of whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -24,8 +24,12 @@ jobs:
         
     steps:
     # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
+    - name: Install PSScriptAnalyzer module
       uses: actions/checkout@v3
+      shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module PSScriptAnalyzer -ErrorAction Stop
 # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
