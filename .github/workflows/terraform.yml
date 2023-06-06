@@ -23,13 +23,6 @@ jobs:
         
         
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Install PSScriptAnalyzer module
-      uses: actions/checkout@v3
-      shell: pwsh
-        run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module PSScriptAnalyzer -ErrorAction Stop
 # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
