@@ -4,6 +4,7 @@ terraform {
     storage_account_name = "backendgithubworkflow"
     container_name       = "tfstate"
     key                  = "actions.tfstate"
+    subscription_id = "77be15c3-5849-4192-956e-e693d7ae0897"
   }
   required_providers {
     azurerm = {
